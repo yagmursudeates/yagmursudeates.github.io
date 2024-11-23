@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: url('pexels-photo-1181611.avif');
+            background-size: cover;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        #menu {
+            position: sticky;
+            top: 0;
+            background-color: #333;
+            overflow: hidden;
+            width: 100%;
+            text-align: center;
+        }
+
+        #menu a {
+            padding: 14px 20px;
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+        }
+
+        #menu a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .ad {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 150px;
+            height: 300px;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 10px;
+            z-index: 1000;
+                
+        }
+                  
+        .ad.left {    
+            left: 0; 
+        }
+
+        .ad.right {
+            right: 0;
+        }
+
+        .ad img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+
+        }
+
+        .ad button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 80px;
+        }
+
+
+        .form-row {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-row label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .name-inputs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .name-inputs input[type="text"] {
+            flex: 1;
+        }
+
+        .select-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .select-container select,
+        .radio-container input {
+            flex: 1;
+        }
+
+        .radio-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-row button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-row button:hover {
+            background-color: #2980b9;
+        }
+
+        @media (min-width: 600px) {
+            .form-row {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .form-row label {
+                width: 150px;
+                text-align: right;
+                margin-right: 15px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .ad {
+                display: none;
+            }
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <a href="midterm.html">Home</a>
+        <a href="index_2.html">Categories</a>
+        <a href="index_2.html">About</a>
+        <a href="index_2.html">Contact</a>
+    </div>
+
+    <div class="ad left">
+        <a href="index_2.html">
+            <img src="banner-mockup-150x300.avif" alt="Ad 1">
+        </a>
+        <button onclick="closeAd(this)">X</button>
+    </div>
+    
+    <div class="ad right">
+        <a href="index_2.html">
+            <img src="banner-mockup-150x300.avif" alt="Ad 2">
+        </a>
+        <button onclick="closeAd(this)">X</button>
+    </div>
+    
+
+    <form id="registration-form">
+        <div class="form-row">
+            <label for="first-name">Name</label>
+            <div class="name-inputs">
+                <input type="text" id="first-name" name="first-name" required placeholder="First Name">
+                <input type="text" id="last-name" name="last-name" required placeholder="Last Name">
+            </div>            
+        </div>
+        <div class="form-row">
+            <label for="company">Company</label>
+            <select id="company" name="company" required>
+                <option value="">Select Company</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="name@email.com">
+            <span id="email-error" class="error"></span>
+        </div>
+        <div class="form-row">
+            <label for="phone">Phone</label>
+            <div class="select-container">
+                <select id="area-code" name="area-code" required>
+                    <option value="">Area Code</option>
+                </select>
+                <input type="text" id="phone-number" name="phone-number" required placeholder="###-####">
+            </div>
+            <span id="phone-error" class="error"></span>
+        </div>
+        <div class="form-row">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject" required>
+                <option value="">Select Subject</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label>Are you a beginner?</label>
+            <div class="radio-container">
+                <label for="yes"><input type="radio" id="yes" name="beginner" value="yes" checked> Yes</label>
+                <label for="no"><input type="radio" id="no" name="beginner" value="no"> No</label>
+            </div>            
+        </div>
+        <div class="form-row">
+            <button type="submit">Register</button>
+        </div>
+    </form>
+
+    <script>
+        function closeAd(button) {
+        const adContainer = button.closest('.ad');
+        adContainer.style.display = 'none';
+    }
+
+        const areaCodes = ['212', '216', '232', '312'];
+        const areaCodeSelect = document.getElementById('area-code');
+        areaCodes.forEach(code => {
+            const option = document.createElement('option');
+            option.value = code;
+            option.textContent = `+90 ${code}`;
+            areaCodeSelect.appendChild(option);
+        });
+
+        document.getElementById('registration-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const phoneNumber = document.getElementById('phone-number').value;
+            const phoneError = document.getElementById('phone-error');
+            const emailError = document.getElementById('email-error');
+            let isValid = true;
+
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailPattern.test(email)) {
+                emailError.textContent = 'Invalid email address';
+                isValid = false;
+            } else {
+                emailError.textContent = '';
+            }
+
+            const phonePattern = /^[0-9]{3}-[0-9]{4}$/;
+            if (!phonePattern.test(phoneNumber)) {
+                phoneError.textContent = 'Invalid phone number (e.g., 212-555-2024)';
+                isValid = false;
+            } else {
+                phoneError.textContent = '';
+            }
+
+            if (isValid) {
+                window.location.href = 'index_3.html';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+        const companyApiUrl = 'https://run.mocky.io/v3/9208bf19-f7d5-4b7c-a924-d93c349e4ecc';
+        const subjectApiUrl = 'https://run.mocky.io/v3/f82286bd-c281-4d7e-ad0c-4cd663bf15c1';
+        
+        fetch(companyApiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const companySelect = document.getElementById('company');
+                data.companies.forEach(company => {
+                    const option = document.createElement('option');
+                    option.value = company;
+                    option.textContent = company;
+                    companySelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching company data:', error));
+
+        fetch(subjectApiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const subjectSelect = document.getElementById('subject');
+                data.subjects.forEach(subject => {
+                    const option = document.createElement('option');
+                    option.value = subject;
+                    option.textContent = subject;
+                    subjectSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching subject data:', error));
+    });
+    </script>
+</body>
+</html>
